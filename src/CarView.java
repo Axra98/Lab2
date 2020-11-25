@@ -24,10 +24,13 @@ public class CarView extends JFrame{
 
     JPanel controlPanel = new JPanel();
 
+    JPanel brakePanel = new JPanel();
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
+    JSpinner brakeSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
+    JLabel brakeLabel = new JLabel("Amount of brake");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -66,13 +69,19 @@ public class CarView extends JFrame{
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
+
+                }
         });
+
+        brakePanel.setLayout(new BorderLayout());
+        brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
+        brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
+        this.add(brakePanel);
         this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
@@ -93,7 +102,6 @@ public class CarView extends JFrame{
         startButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(startButton);
 
-
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
@@ -105,6 +113,13 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 carC.gas(gasAmount);
+            }
+        });
+
+        brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.brake(gasAmount);
             }
         });
 
