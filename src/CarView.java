@@ -73,6 +73,7 @@ public class CarView extends JFrame{
                 }
         });
 
+        brakeSpinner = new JSpinner(spinnerModel);
         brakePanel.setLayout(new BorderLayout());
         brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
         brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
