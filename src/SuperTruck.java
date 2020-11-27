@@ -15,6 +15,7 @@ public abstract class SuperTruck implements Movable{
        parent.length = length;
     }
 
+
     protected double getCurrentSpeed() {
         return parent.getCurrentSpeed();
     }

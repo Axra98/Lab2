@@ -1,20 +1,20 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public abstract class Car implements Movable {
+public abstract class Car extends Vehicle implements Movable {
 
     private Vehicle.Direction direction = Vehicle.Direction.UP;
-    private Vehicle parent = new Vehicle();
+   // private Vehicle parent = new Vehicle();
 
     public Car(int nrDoors, double enginePower, Color color, String modelName, Point.Double position, double length) {
-        parent.nrDoors = nrDoors;
-        parent.enginePower = enginePower;
-        parent.color = color;
-        parent.modelName = modelName;
-        parent.position = position;
-        parent.length = length;
+        super.nrDoors = nrDoors;
+        super.enginePower = enginePower;
+        super.color = color;
+        super.modelName = modelName;
+        super.position = position;
+        super.length = length;
     }
-
+/*
     protected double getEnginePower() {
         return parent.getEnginePower();
     }
@@ -92,4 +92,6 @@ public abstract class Car implements Movable {
     protected void setCurrentSpeed(double currentSpeed) {
         parent.setCurrentSpeed(currentSpeed);
     }
+
+ */
 }
