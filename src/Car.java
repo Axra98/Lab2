@@ -88,4 +88,8 @@ public abstract class Car implements Movable {
     protected String getmodelName() {
         return parent.getmodelName();
     }
+
+    protected void setCurrentSpeed(double currentSpeed) {
+        parent.setCurrentSpeed(currentSpeed);
+    }
 }

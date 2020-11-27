@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class CarController {
     // member fields:
-    //oiejjdfe
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
@@ -42,14 +41,34 @@ public class CarController {
     * view to update its images. Change this method to your needs.
     * */
     private class TimerListener implements ActionListener {
+
+        public void driveCar(Car car) {
+            car.move();
+            int x = (int) Math.round(car.getPos().getX());
+            int y = (int) Math.round(car.getPos().getY());
+            frame.drawPanel.moveit(x, y);
+            // repaint() calls the paintComponent method of the panel
+            frame.drawPanel.repaint();
+        }
+
+        public void turnCar(Car car, Vehicle.Direction dir) {
+            car.stopEngine();
+            car.setDirection(dir);
+            car.startEngine();
+            driveCar(car);
+        }
+
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getPos().getX());
-                int y = (int) Math.round(car.getPos().getY());
-                frame.drawPanel.moveit(x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
+                if(car.getPos().getY() <= 500 && car.getPos().getY() >= 0) {
+                    driveCar(car);
+                }
+                else if(car.getPos().getY() >= 500){
+                    turnCar(car, Vehicle.Direction.UP);
+                }
+                else if(car.getPos().getY() <= 0){
+                    turnCar(car, Vehicle.Direction.DOWN);
+                }
             }
         }
     }
