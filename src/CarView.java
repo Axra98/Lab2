@@ -19,18 +19,15 @@ public class CarView extends JFrame{
 
     // The controller member
     CarController carC;
-
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
-
     JPanel controlPanel = new JPanel();
-
     JPanel brakePanel = new JPanel();
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     JSpinner brakeSpinner = new JSpinner();
     int gasAmount = 0;
-    JLabel gasLabel = new JLabel("Amount of gas");
-    JLabel brakeLabel = new JLabel("Amount of brake");
+
+    JLabel gasLabel = new JLabel("Amount of gas/brake:");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -73,16 +70,16 @@ public class CarView extends JFrame{
                 }
         });
 
-        brakeSpinner = new JSpinner(spinnerModel);
-        brakePanel.setLayout(new BorderLayout());
-        brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
-        brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
+       // brakeSpinner = new JSpinner(spinnerModel);
+       // brakePanel.setLayout(new BorderLayout());
+       // brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
+        //brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
-        this.add(brakePanel);
+       // this.add(brakePanel);
         this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
@@ -121,6 +118,23 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 carC.brake(gasAmount);
+            }
+        });
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                for(Vehicle car : carC.cars)
+                carC.startEngine(car);
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(Vehicle car: carC.cars) {
+                    carC.stopEngine(car);
+                }
             }
         });
 

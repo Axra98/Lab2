@@ -1,21 +1,21 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public abstract class SuperTruck implements Movable{
-    private Vehicle parent = new Vehicle();
+public abstract class SuperTruck extends Vehicle implements Movable{
+    // private Vehicle parent = new Vehicle();
     private Vehicle.Direction direction = Vehicle.Direction.UP;
 
 
    protected SuperTruck (int nrDoors, double enginePower, Color color, String modelName, Point.Double position, Double length){
-       parent.nrDoors = nrDoors;
-       parent.enginePower = enginePower;
-       parent.color = color;
-       parent.modelName = modelName;
-       parent.position = position;
-       parent.length = length;
+       super.nrDoors = nrDoors;
+       super.enginePower = enginePower;
+       super.color = color;
+       super.modelName = modelName;
+       super.position = position;
+       super.length = length;
+
     }
-
-
+/*
     protected double getCurrentSpeed() {
         return parent.getCurrentSpeed();
     }
@@ -71,4 +71,6 @@ public abstract class SuperTruck implements Movable{
     public String getmodelName() {
         return parent.getmodelName();
     }
+
+ */
 }

@@ -9,6 +9,7 @@ public class Saab95 extends Car{
     private boolean turboOn;
 
     protected Saab95(){
+
         super(2, 125, Color.CYAN, "Saab 95", new Point.Double(0,0), 4.0);
     }
 

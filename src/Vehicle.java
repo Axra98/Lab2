@@ -10,7 +10,7 @@ public class Vehicle implements Movable {
     protected double y;
     protected double length; // Engine power of the car The current speed of the car, riktningarna i planet för move.
     protected Color color; // Color of the car
-    protected Direction direction = Direction.DOWN;
+    protected Direction direction = Direction.UP;
     protected Point.Double position; //default x=0, y=0
     protected String modelName;
 
@@ -119,13 +119,13 @@ public class Vehicle implements Movable {
     public void move() {
         switch (direction) {
             case UP:
-                position.setLocation(x, y -= currentSpeed);
+                position.setLocation(x, y += currentSpeed);
                 break;
             case RIGHT:
                 position.setLocation(x += currentSpeed, y);
                 break;
             case DOWN:
-                position.setLocation(x, y += currentSpeed);
+                position.setLocation(x, y -= currentSpeed);
                 break;
             case LEFT:
                 position.setLocation(x -= currentSpeed, y);
@@ -199,9 +199,5 @@ public class Vehicle implements Movable {
      */
     protected String getmodelName() {
         return modelName;
-    }
-
-    protected void setCurrentSpeed(double currentSpeed) {
-        this.currentSpeed = currentSpeed;
     }
 }
