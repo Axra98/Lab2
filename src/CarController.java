@@ -38,66 +38,69 @@ public class CarController {
         // Start the timer
         cc.timer.start();
     }
+    
 
     /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+     * view to update its images. Change this method to your needs.
+     * */
     private class TimerListener implements ActionListener {
 
         public void driveCar(Vehicle car) {
-            car.move();
-            int x = (int) Math.round(car.getPos().getX());
-            int y = (int) Math.round(car.getPos().getY());
+            if (checkCar(car)) {
+                car.move();
+                int x = (int) Math.round(car.getPos().getX());
+                int y = (int) Math.round(car.getPos().getY());
 
-            frame.drawPanel.moveit(x, y);
-            // repaint() calls the paintComponent method of the panel
-            frame.drawPanel.repaint();
+                frame.drawPanel.moveit(x, y);
+                // repaint() calls the paintComponent method of the panel
+                frame.drawPanel.repaint();
+            } else
+                turnCar(car);
         }
 
-        public void turnCar( Vehicle.Direction dir) {
-            for(Vehicle c : cars) {
-                c.stopEngine();
-                c.setDirection(dir);
-                c.startEngine();
-                driveCar(c);
-            }
+        public void turnCar(Vehicle car) {
+            car.turnRight();
+            car.turnRight();
+        }
+
+        public boolean checkCar(Vehicle car) {
+            // innan vi flyttar bilen vill vi kolla så att de går!
+            boolean driveable;
+            if (car.getPos().getY() <= 500 && car.getPos().getY() >= 0) {
+                driveable = true;
+            } else
+                driveable = false;
+            return driveable;
         }
 
         public void actionPerformed(ActionEvent e) {
             for (Vehicle car : cars) {
-                if(car.getPos().getY() <= 500 && car.getPos().getY() >= 0) {
-                    driveCar(car);
-                }
-                else if(car.getPos().getY() >= 500){
-                    turnCar(Vehicle.Direction.UP);
-                }
-                else if(car.getPos().getY() <= 0){
-                    turnCar(Vehicle.Direction.DOWN);
-                }
+                driveCar(car);
             }
         }
-    }
 
-    // Calls the gas method for each car once
-    void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (Vehicle car : cars) {
-            car.gas(gas);
+        // Calls the gas method for each car once
+        void gas(int amount) {
+            double gas = ((double) amount) / 100;
+            for (Vehicle car : cars) {
+                car.gas(gas);
+            }
         }
-    }
 
-    void brake(int amount) {
-        double brake = ((double) amount /100);
-        for(Vehicle car : cars){
-            car.brake(brake);
+        void brake(int amount) {
+            double brake = ((double) amount / 100);
+            for (Vehicle car : cars) {
+                car.brake(brake);
+            }
         }
-    }
-    void startEngine(Vehicle car){
-        car.currentSpeed = 0.1;
-    }
+
+        void startEngine(Vehicle car) {
+            car.currentSpeed = 0.1;
+        }
 
 
-    void stopEngine(Vehicle car){
-        car.currentSpeed = 0;
+        void stopEngine(Vehicle car) {
+            car.currentSpeed = 0;
+        }
     }
 }
