@@ -17,7 +17,6 @@ public class DrawPanel extends JPanel{
 
     HashMap<Vehicle, BufferedImage> imageMap = new HashMap<>();
 
-
     // TODO: Make this general for all cars
     void moveit(int x, int y, Vehicle car){
         car.getPos().setLocation(x,y);
@@ -36,21 +35,18 @@ public class DrawPanel extends JPanel{
 
             // Remember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-
             String path;
-            int count = 0;
             for(Vehicle car: cars) {
                 path = "pics/" + car.getmodelName() + ".jpg";
                 BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream(path));
                 imageMap.put(car, image);
-                car.setPosition(new Point2D.Double(count, y));
-                count += 100;
+                //car.setPosition(new Point2D.Double(x, y));
+
             }
         }
         catch (IOException ex) {
             ex.printStackTrace();
         }
-        imageMap = new HashMap<>();
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
@@ -58,8 +54,10 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int count = 0;
         for( Vehicle car: imageMap.keySet()) {
-            g.drawImage(imageMap.get(car), (int) car.getPos().x, (int) car.getPos().y, null);
+            g.drawImage(imageMap.get(car), (int) car.getPos().x, (int) car.getPos().y+count, null);
+            count += 100;
         }
     }
 }

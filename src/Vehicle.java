@@ -10,7 +10,7 @@ public class Vehicle implements Movable {
     protected double y;
     protected double length; // Engine power of the car The current speed of the car, riktningarna i planet för move.
     protected Color color; // Color of the car
-    protected Direction direction = Direction.UP;
+    protected Direction direction = Direction.RIGHT;
     protected Point.Double position; //default x=0, y=0
     protected String modelName;
 

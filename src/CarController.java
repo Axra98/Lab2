@@ -18,6 +18,8 @@ public class CarController {
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
+
+
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
@@ -55,22 +57,22 @@ public class CarController {
         }
 
         public void turnCar(Vehicle car, Vehicle.Direction dir) {
-            car.stopEngine();
+            //car.stopEngine();
             car.setDirection(dir);
-            car.startEngine();
+            //car.startEngine();
             driveCar(car);
         }
 
         public void actionPerformed(ActionEvent e) {
             for (Vehicle car : cars) {
-                if(car.getPos().getY() <= 500 && car.getPos().getY() >= 0) {
+                if(car.getPos().getX() <= frame.getWidth()- 125 && car.getPos().getX() >= 0) {
                     driveCar(car);
                 }
-                else if(car.getPos().getY() >= 500){
-                    turnCar(car, Vehicle.Direction.UP);
+                else if(car.getPos().getX() >= frame.getWidth() - 125){
+                    turnCar(car, Vehicle.Direction.LEFT);
                 }
-                else if(car.getPos().getY() <= 0){
-                    turnCar(car, Vehicle.Direction.DOWN);
+                else if(car.getPos().getX() <= 0){
+                    turnCar(car, Vehicle.Direction.RIGHT);
                 }
             }
         }
@@ -93,7 +95,7 @@ public class CarController {
         }
 
         void startEngine(Vehicle car) {
-            car.currentSpeed = 0.1;
+            car.startEngine();
         }
 
         void stopEngine(Vehicle car) {
