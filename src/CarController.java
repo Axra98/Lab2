@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 
 public class CarController {
     // member fields:
-
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
@@ -35,10 +35,10 @@ public class CarController {
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
+
         // Start the timer
         cc.timer.start();
     }
-
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
@@ -49,7 +49,7 @@ public class CarController {
             car.move();
             int x = (int) Math.round(car.getPos().getX());
             int y = (int) Math.round(car.getPos().getY());
-            frame.drawPanel.moveit(x, y);
+            frame.drawPanel.moveit(x, y, car);
             // repaint() calls the paintComponent method of the panel
             frame.drawPanel.repaint();
         }
@@ -63,12 +63,6 @@ public class CarController {
 
         public void actionPerformed(ActionEvent e) {
             for (Vehicle car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getPos().getX());
-                int y = (int) Math.round(car.getPos().getY());
-                frame.drawPanel.moveit(x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
                 if(car.getPos().getY() <= 500 && car.getPos().getY() >= 0) {
                     driveCar(car);
                 }
@@ -83,7 +77,7 @@ public class CarController {
     }
 
         // Calls the gas method for each car once
-        public void gas(int amount) {
+        void gas(int amount) {
             double gas = ((double) amount) / 100;
             for (Vehicle car : cars) {
                 if(car.getCurrentSpeed() >= 0.1)
@@ -102,8 +96,8 @@ public class CarController {
             car.currentSpeed = 0.1;
         }
 
-
         void stopEngine(Vehicle car) {
             car.currentSpeed = 0;
         }
+
 }

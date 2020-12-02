@@ -1,41 +1,33 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.util.HashMap;
 
 // This panel represent the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel{
 
     // Just a single image, TODO: Generalize
-    BufferedImage volvoImage;
-    BufferedImage saabImage;
-    BufferedImage scaniaImage;
-    // To keep track of a single cars position
-    Point volvoPoint = new Point(0,0);
-    Point saabPoint = new Point(130, 0);
-    Point scaniaPoint = new Point(260, 0);
 
-
+    HashMap<Vehicle, BufferedImage> imageMap = new HashMap<>();
 
 
     // TODO: Make this general for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
-        saabPoint.x = 130 + x;
-        saabPoint.y = y;
-        scaniaPoint.x = 260 + x;
-        scaniaPoint.y = y;
+    void moveit(int x, int y, Vehicle car){
+        car.getPos().setLocation(x,y);
     }
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y) {
+    public DrawPanel(int x, int y, ArrayList<Vehicle> cars) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
-        this.setBackground(Color.green);
+        this.setBackground(Color.magenta);
         // Print an error message in case file is not found with a try/catch block
         try {
             // You can remove the "pics" part if running outside of IntelliJ and
@@ -44,14 +36,21 @@ public class DrawPanel extends JPanel{
 
             // Remember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
-            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
-        }
 
+            String path;
+            int count = 0;
+            for(Vehicle car: cars) {
+                path = "pics/" + car.getmodelName() + ".jpg";
+                BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream(path));
+                imageMap.put(car, image);
+                car.setPosition(new Point2D.Double(count, y));
+                count += 100;
+            }
+        }
         catch (IOException ex) {
             ex.printStackTrace();
         }
+        imageMap = new HashMap<>();
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
@@ -59,8 +58,8 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
-        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
-        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
+        for( Vehicle car: imageMap.keySet()) {
+            g.drawImage(imageMap.get(car), (int) car.getPos().x, (int) car.getPos().y, null);
+        }
     }
 }

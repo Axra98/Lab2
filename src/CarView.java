@@ -4,6 +4,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -19,7 +20,7 @@ public class CarView extends JFrame{
 
     // The controller member
     CarController carC;
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
+    DrawPanel drawPanel;
     JPanel controlPanel = new JPanel();
     JPanel brakePanel = new JPanel();
     JPanel gasPanel = new JPanel();
@@ -42,6 +43,7 @@ public class CarView extends JFrame{
     // Constructor
     public CarView(String framename, CarController cc){
         this.carC = cc;
+        drawPanel = new DrawPanel(X, Y-240, carC.cars);
         initComponents(framename);
     }
 
@@ -54,8 +56,6 @@ public class CarView extends JFrame{
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         this.add(drawPanel);
-
-
 
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
@@ -95,7 +95,7 @@ public class CarView extends JFrame{
         controlPanel.setBackground(Color.CYAN);
 
 
-        startButton.setBackground(Color.blue);
+        startButton.setBackground(Color.ORANGE);
         startButton.setForeground(Color.green);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(startButton);
@@ -125,7 +125,7 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 for(Vehicle car : carC.cars)
-                carC.startEngine(car);
+                    carC.startEngine(car);
             }
         });
 
@@ -134,6 +134,46 @@ public class CarView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 for(Vehicle car: carC.cars) {
                     carC.stopEngine(car);
+                }
+            }
+        });
+
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(Vehicle car : carC.cars) {
+                    if(car instanceof Saab95)
+                        ((Saab95) car).setTurboOn();
+                    }
+                }
+        });
+
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(Vehicle car : carC.cars) {
+                    if(car instanceof Saab95)
+                        ((Saab95) car).setTurboOff();
+                }
+            }
+        });
+
+        liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(Vehicle car: carC.cars) {
+                    if(car instanceof Scania)
+                        ((Scania) car).rampDown(30);
+                }
+            }
+        });
+
+        lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(Vehicle car: carC.cars) {
+                    if(car instanceof Scania)
+                        ((Scania) car).rampDown(30);
                 }
             }
         });

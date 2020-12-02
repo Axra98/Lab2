@@ -9,7 +9,7 @@ public class Scania extends SuperTruck {
      * Construktor, apply startvalues to an object of Scania
      */
     public Scania() {
-        super(2, 200, Color.WHITE, "Scania", new Point2D.Double(0, 0), 8.0);
+        super(2, 2000, Color.WHITE, "Scania", new Point2D.Double(0, 0), 8.0);
         stopEngine();
     }
 
