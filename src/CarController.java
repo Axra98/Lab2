@@ -46,37 +46,38 @@ public class CarController {
     private class TimerListener implements ActionListener {
 
         public void driveCar(Vehicle car) {
-            if (checkCar(car)) {
-                car.move();
-                int x = (int) Math.round(car.getPos().getX());
-                int y = (int) Math.round(car.getPos().getY());
-
-                frame.drawPanel.moveit(x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            } else
-                turnCar(car);
+            car.move();
+            int x = (int) Math.round(car.getPos().getX());
+            int y = (int) Math.round(car.getPos().getY());
+            frame.drawPanel.moveit(x, y);
+            // repaint() calls the paintComponent method of the panel
+            frame.drawPanel.repaint();
         }
 
-
-        public void turnCar(Vehicle car) {
-            car.turnRight();
-            car.turnRight();
-        }
-
-        public boolean checkCar(Vehicle car) {
-            // innan vi flyttar bilen vill vi kolla så att de går!
-            boolean driveable;
-            if (car.getPos().getY() <= 500 && car.getPos().getY() >= 0) {
-                driveable = true;
-            } else
-                driveable = false;
-            return driveable;
+        public void turnCar(Vehicle car, Vehicle.Direction dir) {
+            car.stopEngine();
+            car.setDirection(dir);
+            car.startEngine();
+            driveCar(car);
         }
 
         public void actionPerformed(ActionEvent e) {
             for (Vehicle car : cars) {
-                driveCar(car);
+                car.move();
+                int x = (int) Math.round(car.getPos().getX());
+                int y = (int) Math.round(car.getPos().getY());
+                frame.drawPanel.moveit(x, y);
+                // repaint() calls the paintComponent method of the panel
+                frame.drawPanel.repaint();
+                if(car.getPos().getY() <= 500 && car.getPos().getY() >= 0) {
+                    driveCar(car);
+                }
+                else if(car.getPos().getY() >= 500){
+                    turnCar(car, Vehicle.Direction.UP);
+                }
+                else if(car.getPos().getY() <= 0){
+                    turnCar(car, Vehicle.Direction.DOWN);
+                }
             }
         }
     }
@@ -85,7 +86,8 @@ public class CarController {
         public void gas(int amount) {
             double gas = ((double) amount) / 100;
             for (Vehicle car : cars) {
-                car.gas(gas);
+                if(car.getCurrentSpeed() >= 0.1)
+                    car.gas(gas);
             }
         }
 

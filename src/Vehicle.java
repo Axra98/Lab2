@@ -119,13 +119,13 @@ public class Vehicle implements Movable {
     public void move() {
         switch (direction) {
             case UP:
-                position.setLocation(x, y += currentSpeed);
+                position.setLocation(x, y -= currentSpeed);
                 break;
             case RIGHT:
                 position.setLocation(x += currentSpeed, y);
                 break;
             case DOWN:
-                position.setLocation(x, y -= currentSpeed);
+                position.setLocation(x, y += currentSpeed);
                 break;
             case LEFT:
                 position.setLocation(x -= currentSpeed, y);

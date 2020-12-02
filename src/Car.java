@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 
 public abstract class Car extends Vehicle implements Movable {
 
-    private Vehicle.Direction direction = Vehicle.Direction.UP;
+    private Vehicle.Direction direction = Vehicle.Direction.DOWN;
     //private Vehicle parent = new Vehicle();
 
     public Car(int nrDoors, double enginePower, Color color, String modelName, Point.Double position, double length) {
