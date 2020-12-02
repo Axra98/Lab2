@@ -38,7 +38,7 @@ public class CarController {
         // Start the timer
         cc.timer.start();
     }
-    
+
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
@@ -57,6 +57,7 @@ public class CarController {
             } else
                 turnCar(car);
         }
+
 
         public void turnCar(Vehicle car) {
             car.turnRight();
@@ -78,9 +79,10 @@ public class CarController {
                 driveCar(car);
             }
         }
+    }
 
         // Calls the gas method for each car once
-        void gas(int amount) {
+        public void gas(int amount) {
             double gas = ((double) amount) / 100;
             for (Vehicle car : cars) {
                 car.gas(gas);
@@ -102,5 +104,4 @@ public class CarController {
         void stopEngine(Vehicle car) {
             car.currentSpeed = 0;
         }
-    }
 }
