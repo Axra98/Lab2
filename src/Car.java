@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public abstract class Car extends Vehicle implements Movable {
+public abstract class Car extends Vehicle {
 
     private Vehicle.Direction direction = Vehicle.Direction.DOWN;
     //private Vehicle parent = new Vehicle();

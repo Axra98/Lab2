@@ -1,23 +1,23 @@
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.HashMap;
 
 // This panel represent the animated part of the view with the car images.
-
 public class DrawPanel extends JPanel{
-
-    // Just a single image, TODO: Generalize
 
     HashMap<Vehicle, BufferedImage> imageMap = new HashMap<>();
 
-    // TODO: Make this general for all cars
+    // TODO: Make this general for all car
+    /**
+     * Används för att flytta bilderna till positionen bilarna är på
+     * @param x komponenten i x led
+     * @param y komponenten i y led
+     * @param car bilen i listan som ska flyttas
+     */
     void moveit(int x, int y, Vehicle car){
         car.getPos().setLocation(x,y);
     }
@@ -26,15 +26,10 @@ public class DrawPanel extends JPanel{
     public DrawPanel(int x, int y, ArrayList<Vehicle> cars) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
-        this.setBackground(Color.magenta);
+        this.setBackground(Color.green);
         // Print an error message in case file is not found with a try/catch block
-        try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
 
-            // Remember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
+        try {
             String path;
             for(Vehicle car: cars) {
                 path = "pics/" + car.getmodelName() + ".jpg";

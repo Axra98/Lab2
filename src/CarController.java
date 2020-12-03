@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -18,15 +17,12 @@ public class CarController {
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
-
-
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
     ArrayList<Vehicle> cars = new ArrayList<>();
 
     //methods:
-
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
@@ -37,7 +33,6 @@ public class CarController {
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
-
         // Start the timer
         cc.timer.start();
     }
@@ -46,33 +41,36 @@ public class CarController {
      * view to update its images. Change this method to your needs.
      * */
     private class TimerListener implements ActionListener {
-
         public void driveCar(Vehicle car) {
             car.move();
             int x = (int) Math.round(car.getPos().getX());
             int y = (int) Math.round(car.getPos().getY());
+
+            moveAndPaint(x, y, car);
+        }
+
+        private void moveAndPaint(int x, int y, Vehicle car){
             frame.drawPanel.moveit(x, y, car);
             // repaint() calls the paintComponent method of the panel
             frame.drawPanel.repaint();
         }
 
-        public void turnCar(Vehicle car, Vehicle.Direction dir) {
-            //car.stopEngine();
-            car.setDirection(dir);
-            //car.startEngine();
-            driveCar(car);
+        public void actionPerformed(ActionEvent e) {
+            driveAtDirection();
         }
 
-        public void actionPerformed(ActionEvent e) {
+        private void driveAtDirection(){
             for (Vehicle car : cars) {
                 if(car.getPos().getX() <= frame.getWidth()- 125 && car.getPos().getX() >= 0) {
                     driveCar(car);
                 }
                 else if(car.getPos().getX() >= frame.getWidth() - 125){
-                    turnCar(car, Vehicle.Direction.LEFT);
+                    car.setDirection(Vehicle.Direction.LEFT);
+                    driveCar(car);
                 }
                 else if(car.getPos().getX() <= 0){
-                    turnCar(car, Vehicle.Direction.RIGHT);
+                    car.setDirection(Vehicle.Direction.RIGHT);
+                    driveCar(car);
                 }
             }
         }
@@ -82,8 +80,7 @@ public class CarController {
         void gas(int amount) {
             double gas = ((double) amount) / 100;
             for (Vehicle car : cars) {
-                if(car.getCurrentSpeed() >= 0.1)
-                    car.gas(gas);
+                car.gas(gas);
             }
         }
 
@@ -93,13 +90,4 @@ public class CarController {
                 car.brake(brake);
             }
         }
-
-        void startEngine(Vehicle car) {
-            car.startEngine();
-        }
-
-        void stopEngine(Vehicle car) {
-            car.currentSpeed = 0;
-        }
-
 }

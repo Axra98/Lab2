@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public abstract class SuperTruck extends Vehicle implements Movable{
+public abstract class SuperTruck extends Vehicle {
     // private Vehicle parent = new Vehicle();
     private Vehicle.Direction direction = Vehicle.Direction.UP;
 

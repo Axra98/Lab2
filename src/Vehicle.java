@@ -16,6 +16,7 @@ public class Vehicle implements Movable {
 
     protected Vehicle(){
     }
+
     /**
      * Returnerar antalet dörrar.
      * @return
@@ -57,14 +58,14 @@ public class Vehicle implements Movable {
     /**
      * Startar motorn
      */
-    protected void startEngine(){
+    public void startEngine(){
         currentSpeed = 0.1;
     }
 
     /**
      * Stänger av motorn
      */
-    protected void stopEngine(){
+    public void stopEngine(){
         currentSpeed = 0;
     }
 
@@ -88,8 +89,9 @@ public class Vehicle implements Movable {
      * Metoden ökar hastigheten på bilen med amount
      */
     protected void gas(double amount){
-        if(amount>=0.0 && amount <= 1.0)
+        if(amount>=0.0 && amount <= 1.0 && getCurrentSpeed() >= 0.1) {
             incrementSpeed(amount);
+        }
     }
 
     /**

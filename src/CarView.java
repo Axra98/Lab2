@@ -13,7 +13,6 @@ import java.util.ArrayList;
  * each of it's components.
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
-
 public class CarView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
@@ -94,7 +93,6 @@ public class CarView extends JFrame{
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
-
         startButton.setBackground(Color.ORANGE);
         startButton.setForeground(Color.green);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
@@ -125,7 +123,7 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 for(Vehicle car : carC.cars)
-                    carC.startEngine(car);
+                    car.startEngine();
             }
         });
 
@@ -133,7 +131,7 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 for(Vehicle car: carC.cars) {
-                    carC.stopEngine(car);
+                    car.stopEngine();
                 }
             }
         });
