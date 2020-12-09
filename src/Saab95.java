@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 public class Saab95 extends Car{
     /** Denna klass ärver från Car. Man får med alla metoder pluss att man lägger till egna här.

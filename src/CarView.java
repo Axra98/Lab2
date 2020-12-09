@@ -21,11 +21,10 @@ public class CarView extends JFrame{
     CarController carC;
     DrawPanel drawPanel;
     JPanel controlPanel = new JPanel();
-    JPanel brakePanel = new JPanel();
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
-    JSpinner brakeSpinner = new JSpinner();
     int gasAmount = 0;
+    OutputView output = new OutputView(carC);
 
     JLabel gasLabel = new JLabel("Amount of gas/brake:");
 
@@ -69,16 +68,10 @@ public class CarView extends JFrame{
                 }
         });
 
-       // brakeSpinner = new JSpinner(spinnerModel);
-       // brakePanel.setLayout(new BorderLayout());
-       // brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
-        //brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
-
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
-       // this.add(brakePanel);
         this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
@@ -103,6 +96,7 @@ public class CarView extends JFrame{
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
 
+        this.add(output);
         // This actionListener is for the gas button only
         // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
@@ -121,9 +115,8 @@ public class CarView extends JFrame{
 
         startButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                for(Vehicle car : carC.cars)
-                    car.startEngine();
+            public void actionPerformed(ActionEvent e) {
+                carC.startEngine();
             }
         });
 
@@ -139,30 +132,21 @@ public class CarView extends JFrame{
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(Vehicle car : carC.cars) {
-                    if(car instanceof Saab95)
-                        ((Saab95) car).setTurboOn();
-                    }
-                }
+                carC.setTurboOn();
+            }
         });
 
         turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(Vehicle car : carC.cars) {
-                    if(car instanceof Saab95)
-                        ((Saab95) car).setTurboOff();
-                }
+                carC.setTurboOff();
             }
         });
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(Vehicle car: carC.cars) {
-                    if(car instanceof Scania)
-                        ((Scania) car).rampDown(30);
-                }
+                carC.rampUp();
             }
         });
 
@@ -189,3 +173,4 @@ public class CarView extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
+
