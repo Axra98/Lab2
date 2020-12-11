@@ -1,5 +1,8 @@
 public class CarApp {
-
+    /**
+     * Mainmetoden. Startar programmet
+     * @param args
+     */
     public static void main(String[] args) {
         CarController cc = new CarController();
 

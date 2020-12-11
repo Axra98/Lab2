@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 
-public class Ferry implements Load, Movable{
+public class Ferry implements Load, Movable {
 
     private int max;
     private Deque<Car> store;
@@ -17,7 +17,7 @@ public class Ferry implements Load, Movable{
         parent.enginePower = 500;
         parent.color = Color.CYAN;
         parent.modelName = "Färja 1";
-        parent.position = new Point2D.Double(0,0);
+        parent.position = new Point2D.Double(0, 0);
         parent.length = 80;
         store = new ArrayDeque<>();
         this.max = max;
@@ -25,32 +25,34 @@ public class Ferry implements Load, Movable{
 
     /**
      * Loads the chosen car to the ferry
+     *
      * @param car which car to load
      */
     public void loadCar(Car car) {
-        if(store.size() < max) {
+        if (store.size() < max) {
             store.add(car);
         }
     }
 
     /**
-     *  removes the chosen car from the ferry
+     * removes the chosen car from the ferry
+     *
      * @param car which car to remove
      */
     public void removeCar(Car car) {
-        if(store.contains(car) && store.peekFirst().equals(car)){
+        if (store.contains(car) && store.peekFirst().equals(car)) {
             switch (getDirection()) {
                 case UP:
-                    car.setPosition(new Point2D.Double(car.getPos().getX(), car.getPos().getY()-2));
+                    car.setPosition(new Point2D.Double(car.getPos().getX(), car.getPos().getY() - 2));
                     break;
                 case RIGHT:
-                    car.setPosition(new Point2D.Double(car.getPos().getX()-2, car.getPos().getY()));
+                    car.setPosition(new Point2D.Double(car.getPos().getX() - 2, car.getPos().getY()));
                     break;
                 case DOWN:
-                    car.setPosition(new Point2D.Double(car.getPos().getX(), car.getPos().getY()+2));
+                    car.setPosition(new Point2D.Double(car.getPos().getX(), car.getPos().getY() + 2));
                     break;
                 case LEFT:
-                    car.setPosition(new Point2D.Double(car.getPos().getX()+2, car.getPos().getY()));
+                    car.setPosition(new Point2D.Double(car.getPos().getX() + 2, car.getPos().getY()));
                     break;
             }
             store.remove(car);
@@ -73,38 +75,39 @@ public class Ferry implements Load, Movable{
         parent.gas(amount);
     }
 
-    protected void brake (double amount){
+    protected void brake(double amount) {
         parent.brake(amount);
     }
 
-    public void move () {
+    public void move() {
         parent.move();
     }
 
-    public void turnLeft () {
+    public void turnLeft() {
         parent.turnLeft();
     }
 
-    public void turnRight () {
+    public void turnRight() {
         parent.turnRight();
     }
 
-    protected Point2D.Double getPos () {
+    protected Point2D.Double getPos() {
         return parent.getPos();
     }
-    protected Vehicle.Direction getDirection () {
+
+    protected Vehicle.Direction getDirection() {
         return parent.getDirection();
     }
 
-    protected void setDirection (Vehicle.Direction direction){
+    protected void setDirection(Vehicle.Direction direction) {
         parent.setDirection(direction);
     }
 
-    protected void setPosition (Point2D.Double position){
+    protected void setPosition(Point2D.Double position) {
         parent.setPosition(position);
     }
 
-    protected double getLength () {
+    protected double getLength() {
         return parent.getLength();
     }
 

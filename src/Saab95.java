@@ -1,31 +1,35 @@
 import java.awt.*;
 
 public class Saab95 extends Car implements ITurbo {
-    /** Denna klass ärver från Car. Man får med alla metoder pluss att man lägger till egna här.
-     *
+    /**
+     * Denna klass ärver från Car. Man får med alla metoder pluss att man lägger till egna här.
      */
 
     public boolean turboOn;
 
-    protected Saab95(){
+    protected Saab95() {
 
-        super(2, 125, Color.CYAN, "Saab95", new Point.Double(0,0), 4.0);
+        super(2, 125, Color.CYAN, "Saab95", new Point.Double(0, 0), 4.0);
     }
 
-    /** Sätta på turbon på Saab. Detta påverkar speedFactor.
+    /**
+     * Sätta på turbon på Saab. Detta påverkar speedFactor.
      */
-    public void setTurboOn(){
+    public void setTurboOn() {
         turboOn = true;
     }
 
-    /**Stänger av turbon och påverkar speedFactor
+    /**
+     * Stänger av turbon och påverkar speedFactor
+     *
      * @return
      */
-    public void setTurboOff(){
+    public void setTurboOff() {
         turboOn = false;
     }
 
-    /**Denna metod heter speedFactor vilket är samma som den i Car klassen. Mha en override skriver man dock
+    /**
+     * Denna metod heter speedFactor vilket är samma som den i Car klassen. Mha en override skriver man dock
      * över det som finns i car och använder denna istället, eftersom Saab95 har en turbo.
      * Skulle någon annan bil (skapar en annan klass som ärver från Car) inte ha några speciella
      * preferenser kring speedFactor kan man använda den som finns i Car och behöver därmed inte skapa en ny.
@@ -33,7 +37,7 @@ public class Saab95 extends Car implements ITurbo {
     protected double speedFactor() {
         double turbo = 1;
         if (turboOn) turbo = 1.3;
-            return getEnginePower() * 0.01 * turbo;
+        return getEnginePower() * 0.01 * turbo;
 
     }
 }

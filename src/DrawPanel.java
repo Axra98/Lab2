@@ -44,8 +44,7 @@ public class DrawPanel extends JPanel{
                 BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream(path));
                 imageMap.put(car, image);
             }
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
@@ -59,8 +58,8 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         int count = 0;
-        for( Vehicle car: imageMap.keySet()) {
-            g.drawImage(imageMap.get(car), (int) car.getPos().x, (int) car.getPos().y+count, null);
+        for (Vehicle car : imageMap.keySet()) {
+            g.drawImage(imageMap.get(car), (int) car.getPos().x, (int) car.getPos().y + count, null);
             count += 100;
         }
     }

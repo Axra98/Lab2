@@ -9,23 +9,16 @@ public class CarModel {
     public void addObservers(Observer obs) {
         observers.add(obs);
     }
+
     public void addObservers2(RemoveObserver obs2) {
         removeObservers.add(obs2);
     }
 
-    public void removeObservers(Observer obs){
-        observers.remove(obs);
-    }
-
-    public void removeObservers2(RemoveObserver obs2){
-        removeObservers.remove(obs2);
-    }
-
-   public void notifyObservers2(){
-        for(RemoveObserver o2 : removeObservers){
+    public void notifyObservers2() {
+        for (RemoveObserver o2 : removeObservers) {
             o2.removeOnUpdate();
         }
-   }
+    }
 
     public void notifyObservers() {
         for(Observer o : observers){
@@ -33,7 +26,7 @@ public class CarModel {
         }
     }
 
-    public void gas(int amount){
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Vehicle car : cars) {
             if (car.getCurrentSpeed() >= 0.1) {
@@ -42,15 +35,15 @@ public class CarModel {
         }
     }
 
-    public void brake(int amount){
+    public void brake(int amount) {
         double brake = ((double) amount / 100);
         for (Vehicle car : cars) {
             car.brake(brake);
         }
     }
 
-    public void addCar(){
-        if(cars.size() < 10) {
+    public void addCar() {
+        if (cars.size() < 10) {
             Vehicle car = new Volvo240();
             cars.add(car);
         }
@@ -70,21 +63,21 @@ public class CarModel {
         return name + ": " + str + " km/h";
     }
 
-    public void setTurboOff(){
+    public void setTurboOff() {
         for (Vehicle car : cars) {
             if (car instanceof ITurbo)
                 ((Saab95) car).setTurboOff();
         }
     }
 
-    public void setTurboOn(){
+    public void setTurboOn() {
         for (Vehicle car : cars) {
             if (car instanceof ITurbo)
                 ((Saab95) car).setTurboOn();
         }
     }
 
-    public void rampUp(){
+    public void rampUp() {
         for (Vehicle car : cars) {
             if (car instanceof IRamp) {
                 ((Scania) car).rampUp(30);
@@ -92,7 +85,7 @@ public class CarModel {
         }
     }
 
-    public void rampDown(){
+    public void rampDown() {
         for (Vehicle car : cars) {
             if (car instanceof IRamp)
                 ((Scania) car).rampDown(30);
@@ -118,7 +111,7 @@ public class CarModel {
         moveit(x, y, car);
     }
 
-    public void turnCar(Vehicle car, Vehicle.Direction dir){
+    public void turnCar(Vehicle car, Vehicle.Direction dir) {
         car.setDirection(dir);
         driveCar(car);
     }

@@ -17,8 +17,8 @@ public class Scania extends SuperTruck {
      * Ser till att motorn inte kan startas så länge flaket inte är nere
      */
     @Override
-    public void startEngine(){
-        if(getAngle() == 0)
+    public void startEngine() {
+        if (getAngle() == 0)
             super.startEngine();
     }
 
