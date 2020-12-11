@@ -1,33 +1,22 @@
 import javax.swing.*;
 
-public class OutputView extends JPanel {
+public class OutputView extends JPanel implements Observer {
 
     CarController carC;
 
-    //JButton speedButton = new JButton("speedButton");
-    JLabel speedLabel = new JLabel("hej");
+    JLabel speedLabel = new JLabel();
 
     public OutputView(CarController cc) {
         this.carC = cc;
         initComponents();
+        cc.model.addObservers(this);
     }
 
     public void actOnUpdate() {
         speedLabel.setText(carC.updateSpeed());
     }
 
-
     public void initComponents() {
         this.add(speedLabel);
-
-        /**speedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-              text();
-            }
-        });
-         **/
     }
-
-
 }

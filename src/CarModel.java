@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarModel {
-    ArrayList<Vehicle> cars = new ArrayList<>();
-
+public class CarModel implements ICar {
+    List<Vehicle> cars = new ArrayList<>();
     List<Observer> observers = new ArrayList<>();
+    List<RemoveObserver> removeObservers = new ArrayList<>();
 
     public void addObservers(Observer obs) {
         observers.add(obs);
@@ -50,17 +50,17 @@ public class CarModel {
         notifyObservers();
     }
 
-    public void removeCar(){
-        if(cars != null) {
-            cars.remove(0);
-            notifyObservers();
-        }
+    public void removeCar() {
+        notifyObservers2();
     }
 
-    public String updateSpeed(){
-        String str = Double.toString(cars.get(1).getCurrentSpeed());
-        String name = cars.get(1).getmodelName();
-        return name + ": " + str + " km/h";
+    public String updateSpeed() {
+        if (cars != null) {
+            String str = Double.toString(cars.get(0).getCurrentSpeed());
+            String name = cars.get(0).getmodelName();
+            return name + ": " + str + " km/h";
+        }
+        return "0";
     }
 
     public void setTurboOff() {

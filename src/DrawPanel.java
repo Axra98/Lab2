@@ -5,33 +5,25 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.HashMap;
 
-// This panel represent the animated part of the view with the car images.
-
-public class DrawPanel extends JPanel{
-
-    // Just a single image, TODO: Generalize
+public class DrawPanel extends JPanel implements Observer, RemoveObserver {
 
     HashMap<Vehicle, BufferedImage> imageMap = new HashMap<>();
+    CarController cc;
 
-    // TODO: Make this general for all cars
-    void moveit(int x, int y, Vehicle car){
-        car.getPos().setLocation(x,y);
-    }
-
-    // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<Vehicle> cars) {
+    public DrawPanel(int x, int y, CarController cc) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.magenta);
-        // Print an error message in case file is not found with a try/catch block
+        cc.model.addObservers(this);
+        cc.model.addObservers2(this);
+        this.cc = cc;
         paintImage();
     }
 
     public void removeImage() {
         try {
-            imageMap.remove(0);
-        }
-        catch (IndexOutOfBoundsException ex) {
+            imageMap.remove(cc.model.cars.remove(imageMap.size() - 1));
+        } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
         }
     }
@@ -49,9 +41,14 @@ public class DrawPanel extends JPanel{
         }
     }
 
-    public void actOnUpdate(){
-        repaint();
+    public void actOnUpdate() {
         paintImage();
+        repaint();
+    }
+
+    public void removeOnUpdate() {
+        removeImage();
+        repaint();
     }
 
     @Override
