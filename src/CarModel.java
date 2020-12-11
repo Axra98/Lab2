@@ -9,10 +9,23 @@ public class CarModel {
     public void addObservers(Observer obs) {
         observers.add(obs);
     }
+    public void addObservers2(RemoveObserver obs2) {
+        removeObservers.add(obs2);
+    }
 
     public void removeObservers(Observer obs){
         observers.remove(obs);
     }
+
+    public void removeObservers2(RemoveObserver obs2){
+        removeObservers.remove(obs2);
+    }
+
+   public void notifyObservers2(){
+        for(RemoveObserver o2 : removeObservers){
+            o2.removeOnUpdate();
+        }
+   }
 
     public void notifyObservers() {
         for(Observer o : observers){
@@ -73,8 +86,9 @@ public class CarModel {
 
     public void rampUp(){
         for (Vehicle car : cars) {
-            if (car instanceof IRamp)
+            if (car instanceof IRamp) {
                 ((Scania) car).rampUp(30);
+            }
         }
     }
 

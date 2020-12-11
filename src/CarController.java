@@ -86,10 +86,10 @@ public class CarController {
     void gas(int amount) {
         model.gas(amount);
     }
-    void brake(int amount) {
+    public void brake(int amount) {
         model.brake(amount);
     }
-    void startEngine() {
+    public void startEngine() {
         model.startEngine();
     }
 
@@ -116,15 +116,13 @@ public class CarController {
     public String updateSpeed() {
         return model.updateSpeed();
     }
-
-    void removeCar() {
+    public void removeCar() {
         model.removeCar();
     }
 
     void addCar() {
        model.addCar();
     }
-
 }
 
 
