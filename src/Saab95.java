@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends Car{
+public class Saab95 extends Car implements ITurbo {
     /** Denna klass ärver från Car. Man får med alla metoder pluss att man lägger till egna här.
      *
      */
@@ -14,14 +14,14 @@ public class Saab95 extends Car{
 
     /** Sätta på turbon på Saab. Detta påverkar speedFactor.
      */
-    protected void setTurboOn(){
+    public void setTurboOn(){
         turboOn = true;
     }
 
     /**Stänger av turbon och påverkar speedFactor
      * @return
      */
-    protected void setTurboOff(){
+    public void setTurboOff(){
         turboOn = false;
     }
 

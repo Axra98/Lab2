@@ -9,7 +9,6 @@ public class CarApp {
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
-        cc.output = new OutputView(cc);
 
         // Start the timer
         cc.timer.start();

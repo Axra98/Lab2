@@ -77,98 +77,54 @@ public class CarController {
             }
         }
 
-        public void updateSpeed() {
-            String str = Double.toString(cars.get(1).getCurrentSpeed());
-            String name = cars.get(1).getmodelName();
-            output.speedLabel.setText(name + ": " + str + " km/h");
-        }
-
-        public void setString(String str){
-            output.speedLabel.setText(str);
-        }
-
         public void actionPerformed(ActionEvent e) {
             checkCar();
-            updateSpeed();
         }
     }
 
     // Calls the gas method for each car once
     void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (Vehicle car : cars) {
-            if (car.getCurrentSpeed() >= 0.1){
-                car.gas(gas);
-
-            }
-        }
+        model.gas(amount);
     }
-
-    void removeCar() {
-       if(cars != null) {
-           frame.drawPanel.imageMap.remove(cars.get(0));
-           cars.remove(0);
-       }
-    }
-
-    void addCar() {
-       if(cars.size() < 10) {
-           Vehicle car = new Volvo240();
-           cars.add(car);
-           try {
-               BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/:Volvo240.jpg"));
-               frame.drawPanel.imageMap.put(car, image);
-               frame.drawPanel.repaint();
-           } catch (IOException ex) {
-               ex.printStackTrace();
-           }
-       }
-    }
-
     void brake(int amount) {
-        double brake = ((double) amount / 100);
-        for (Vehicle car : cars) {
-            car.brake(brake);
-        }
+        model.brake(amount);
     }
-
-        void startEngine(Vehicle car) {
-            car.startEngine();
-        }
+    void startEngine() {
+        model.startEngine();
+    }
 
     void stopEngine() {
-
-        for (Vehicle car : cars)
-            car.currentSpeed = 0;
+        model.stopEngine();
     }
 
     void setTurboOn() {
-        for (Vehicle car : cars) {
-            if (car instanceof ITurbo)
-                ((Saab95) car).setTurboOn();
-        }
+        model.setTurboOn();
     }
 
     void setTurboOff() {
-        for (Vehicle car : cars) {
-            if (car instanceof ITurbo)
-                ((Saab95) car).setTurboOff();
-        }
+        model.setTurboOff();
     }
 
     void rampDown() {
-        for (Vehicle car : cars) {
-            if (car instanceof IRamp)
-                ((Scania) car).rampDown(30);
-        }
+        model.rampDown();
     }
 
     void rampUp() {
-        for (Vehicle car : cars) {
-            if (car instanceof IRamp)
-                ((Scania) car).rampUp(30);
-        }
+        model.rampUp();
     }
+
+    public String updateSpeed() {
+        return model.updateSpeed();
+    }
+
+    void removeCar() {
+        model.removeCar();
+    }
+
+    void addCar() {
+       model.addCar();
+    }
+
 }
 
 

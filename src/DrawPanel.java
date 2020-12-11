@@ -1,10 +1,6 @@
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.HashMap;
@@ -28,26 +24,28 @@ public class DrawPanel extends JPanel{
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.magenta);
         // Print an error message in case file is not found with a try/catch block
-        try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
+        paintImage();
+    }
 
-            // Remember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
+    public void removeImage(){
+
+
+    }
+
+    public void paintImage() {
+        try {
             String path;
-            for(Vehicle car: cars) {
+            for (Vehicle car : cc.model.cars) {
                 path = "pics/" + car.getmodelName() + ".jpg";
                 BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream(path));
                 imageMap.put(car, image);
-                //car.setPosition(new Point2D.Double(x, y));
-
             }
         }
         catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
 
     // This method is called each time the panel updates/refreshes/repaints itself
     // TODO: Change to suit your needs.
