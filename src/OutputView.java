@@ -16,6 +16,7 @@ public class OutputView extends JPanel {
         speedLabel.setText(carC.updateSpeed());
     }
 
+
     public void initComponents() {
         this.add(speedLabel);
 

@@ -27,9 +27,13 @@ public class DrawPanel extends JPanel{
         paintImage();
     }
 
-    public void removeImage(){
-
-
+    public void removeImage() {
+        try {
+            imageMap.remove(0);
+        }
+        catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void paintImage() {
@@ -46,9 +50,11 @@ public class DrawPanel extends JPanel{
         }
     }
 
+    public void actOnUpdate(){
+        repaint();
+        paintImage();
+    }
 
-    // This method is called each time the panel updates/refreshes/repaints itself
-    // TODO: Change to suit your needs.
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
