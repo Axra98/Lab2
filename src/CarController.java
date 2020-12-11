@@ -82,8 +82,11 @@ public class CarController {
         }
     }
 
-    // Calls the gas method for each car once
-    void gas(int amount) {
+    /**
+     * Metoden ökar bilens hastighet. Kopplar till en metod i CarModel
+     * @param amount en int som påverkar hur mycket bilen gasar
+     */
+    public void gas(int amount) {
         model.gas(amount);
     }
     public void brake(int amount) {
@@ -92,37 +95,28 @@ public class CarController {
     public void startEngine() {
         model.startEngine();
     }
-
-    void stopEngine() {
+    public void stopEngine() {
         model.stopEngine();
     }
-
-    void setTurboOn() {
+    public void setTurboOn() {
         model.setTurboOn();
     }
-
-    void setTurboOff() {
+    public void setTurboOff() {
         model.setTurboOff();
     }
-
-    void rampDown() {
+    public void rampDown() {
         model.rampDown();
     }
-
-    void rampUp() {
+    public void rampUp() {
         model.rampUp();
     }
-
     public String updateSpeed() {
         return model.updateSpeed();
     }
     public void removeCar() {
         model.removeCar();
     }
-
-    void addCar() {
+    public void addCar() {
        model.addCar();
     }
 }
-
-

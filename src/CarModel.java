@@ -21,7 +21,7 @@ public class CarModel {
     }
 
     public void notifyObservers() {
-        for(Observer o : observers){
+        for (Observer o : observers) {
             o.actOnUpdate();
         }
     }
@@ -87,8 +87,9 @@ public class CarModel {
 
     public void rampDown() {
         for (Vehicle car : cars) {
-            if (car instanceof IRamp)
+            if (car instanceof IRamp) {
                 ((Scania) car).rampDown(30);
+            }
         }
     }
 
@@ -116,17 +117,17 @@ public class CarModel {
         driveCar(car);
     }
 
-    void moveit(int x, int y, Vehicle car){
-        car.getPos().setLocation(x,y);
+    public void moveit(int x, int y, Vehicle car) {
+        car.getPos().setLocation(x, y);
         notifyObservers();
     }
 
-    void stopEngine() {
+    public void stopEngine() {
         for (Vehicle car : cars)
             car.stopEngine();
     }
 
-    void startEngine() {
+    public void startEngine() {
         for (Vehicle car : cars)
             car.startEngine();
     }

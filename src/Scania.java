@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Scania extends SuperTruck {
+public class Scania extends SuperTruck implements IRamp {
 
     private static double angle = 0;
 
@@ -25,16 +25,16 @@ public class Scania extends SuperTruck {
     /**
      * @param change the amoaunt you want to push the ramp up
      */
-    protected void rampDown(double change){
-        if(getCurrentSpeed() == 0 && (angle - change) >=0)
+    public void rampDown(double change) {
+        if (getCurrentSpeed() == 0 && (angle - change) >= 0)
             angle -= change;
     }
 
     /**
      * @param change the amoaunt you want to push the ramp down
      */
-    protected void rampUp(double change){
-        if(getCurrentSpeed() == 0 && (angle + change) <=70)
+    public void rampUp(double change) {
+        if (getCurrentSpeed() == 0 && (angle + change) <= 70)
             angle += change;
     }
 
