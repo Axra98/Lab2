@@ -22,14 +22,14 @@ public class Vehicle implements Movable {
      *
      * @return
      */
-    protected int getNrDoors() {
+    public int getNrDoors() {
         return nrDoors;
     }
 
     /**
      * Returnerar motoreffekten
      */
-    protected double getEnginePower() {
+    public double getEnginePower() {
         return enginePower;
     }
 
@@ -38,14 +38,14 @@ public class Vehicle implements Movable {
      * enginepower respektive understiga 0
      * Returnerar currentSpeed
      */
-    protected double getCurrentSpeed() {
+    public double getCurrentSpeed() {
         return currentSpeed;
     }
 
     /**
      * Returnerar färgen på en bil
      */
-    protected Color getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -91,7 +91,7 @@ public class Vehicle implements Movable {
      * @param amount är av typen Double som avgör hur mycket currentSpeed ökar
      *               Metoden ökar hastigheten på bilen med amount
      */
-    protected void gas(double amount) {
+    public void gas(double amount) {
         if (amount >= 0.0 && amount <= 1.0 && getCurrentSpeed() >= 0.1) {
             incrementSpeed(amount);
         }
@@ -103,7 +103,7 @@ public class Vehicle implements Movable {
      * @param amount är av typen Double som avgör hur mycket currentSpeed minskar
      */
     // TODO fix this method according to lab pm
-    protected void brake(double amount) {
+    public void brake(double amount) {
         if (amount >= 0.0 && amount <= 1.0)
             decrementSpeed(amount);
     }
@@ -185,14 +185,14 @@ public class Vehicle implements Movable {
     /**
      * Returnerar en bils position
      */
-    protected Point2D.Double getPos() {
+    public Point2D.Double getPos() {
         return position;
     }
 
     /**
      * Returnerar bilens riktning
      */
-    protected Direction getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
@@ -201,12 +201,12 @@ public class Vehicle implements Movable {
      *
      * @param direction anger riktningen för bilen
      */
-    protected void setDirection(Direction direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
     /**
-     * Sets position for object of Vehicle
+     * Sets position for object of Vehicles.Vehicle
      *
      * @param position
      */
@@ -224,7 +224,7 @@ public class Vehicle implements Movable {
     /**
      * @return ModelName for object
      */
-    protected String getmodelName() {
+    public String getmodelName() {
         return modelName;
     }
 }

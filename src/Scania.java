@@ -6,7 +6,7 @@ public class Scania extends SuperTruck implements IRamp {
     private static double angle = 0;
 
     /**
-     * Construktor, apply startvalues to an object of Scania
+     * Construktor, apply startvalues to an object of Vehicles.Scania
      */
     public Scania() {
         super(2, 2000, Color.WHITE, "Scania", new Point2D.Double(0, 0), 8.0);

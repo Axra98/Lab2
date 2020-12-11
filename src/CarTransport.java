@@ -56,7 +56,7 @@ public class CarTransport extends SuperTruck implements Load {
     }
 
     /**
-     * Loads a specific Car to the Truck
+     * Loads a specific Vehicles.Car to the Truck
      *
      * @param car which car you want to load
      */

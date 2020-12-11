@@ -22,7 +22,7 @@ public class CarView extends JFrame {
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Scania Lift Bed");
+    JButton liftBedButton = new JButton("Vehicles.Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
     JButton addCarButton = new JButton("Add car");
     JButton removeCarButton = new JButton("Remove car");

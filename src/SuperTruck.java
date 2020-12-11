@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public abstract class SuperTruck extends Vehicle {
-    // private Vehicle parent = new Vehicle();
+    // private Vehicles.Vehicle parent = new Vehicles.Vehicle();
     private Vehicle.Direction direction = Vehicle.Direction.UP;
 
 

@@ -10,8 +10,8 @@ public class Workshop<T extends Car> implements Load<T> {
     /**
      * Creats a WorkShop
      *
-     * @param car decides which typ of Car we can put in the Workshop
-     * @param max decides how big the Workshop is
+     * @param car decides which typ of Vehicles.Car we can put in the Vehicles.Workshop
+     * @param max decides how big the Vehicles.Workshop is
      */
     public Workshop(T car, int max) {
         this.car = car;
@@ -20,7 +20,7 @@ public class Workshop<T extends Car> implements Load<T> {
     }
 
     /**
-     * Loads the car to the Workshop
+     * Loads the car to the Vehicles.Workshop
      *
      * @param car which car to load
      */
@@ -31,7 +31,7 @@ public class Workshop<T extends Car> implements Load<T> {
     }
 
     /**
-     * Removes the car from the Workshop
+     * Removes the car from the Vehicles.Workshop
      *
      * @param car which car to remove
      */

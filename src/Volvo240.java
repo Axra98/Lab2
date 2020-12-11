@@ -1,5 +1,4 @@
 import java.awt.*;
-
 public class Volvo240 extends Car {
     private final static double trimFactor = 1.25;
 
@@ -10,8 +9,8 @@ public class Volvo240 extends Car {
     /**
      * Här får man en speedFactor som tar hänsyn till en trimFactor.
      * Den används sedan i incrementSpeed och decrementSpeed.
-     * Den overridear den som finns i Car. Det som skiljer denna från den i Car är att här
-     * tar man hänsyn till trimFactor, något som den i Car inte gör.
+     * Den overridear den som finns i Vehicles.Car. Det som skiljer denna från den i Vehicles.Car är att här
+     * tar man hänsyn till trimFactor, något som den i Vehicles.Car inte gör.
      */
     protected double speedFactor() {
         return getEnginePower() * 0.01 * trimFactor;
